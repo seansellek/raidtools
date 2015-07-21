@@ -1,0 +1,12 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+nesaru:
+  id: 1
+  realm_id: 1
+  name: Nesaru
+  item_data: MyText
+
+two:
+  realm_id:
+  name: MyString
+  item_data: MyText

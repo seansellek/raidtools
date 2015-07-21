@@ -11,31 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721055025) do
+ActiveRecord::Schema.define(version: 20150721191552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "characters", force: :cascade do |t|
-    t.string  "region",   null: false
-    t.string  "server",   null: false
-    t.string  "name",     null: false
-    t.integer "realm_id"
+    t.integer  "realm_id"
+    t.string   "name"
+    t.text     "item_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "characters", ["realm_id"], name: "index_characters_on_realm_id", using: :btree
 
   create_table "realms", force: :cascade do |t|
-    t.string  "name"
-    t.string  "slug"
-    t.integer "region_id"
+    t.integer  "region_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "slug"
   end
 
-  add_index "realms", ["name"], name: "index_realms_on_name", using: :btree
   add_index "realms", ["region_id"], name: "index_realms_on_region_id", using: :btree
 
   create_table "regions", force: :cascade do |t|
-    t.string "name"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "characters", "realms"

@@ -3,7 +3,7 @@ namespace :scheduler do
   task update_realmlist: :environment do
     realm_list = BattleNetApi.get_realm_list
     realm_list.each do |region, realms|
-      region = Region.find_by(name: region.to_s)
+      region = Region.find_by(name: region.to_s) || Region.create!(name: region.to_s.upcase)
       realms.each do |realm, slug|
         Realm.create!(name: realm, slug: slug, region: region) unless Realm.find_by(slug: slug)
       end

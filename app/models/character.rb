@@ -1,7 +1,9 @@
 class Character < ActiveRecord::Base
-  has_one :realm
-  validates :name, presence: true
-  validates :name, length: { minimum: 2, maximum: 12 }
-  validates :region, inclusion: { in: %w(US EU) }
+  belongs_to :realm
+  has_one :region, through: :realm
+  serialize :item_data
 
+  def refresh_item_data
+    self.item_data = BattleNetApi.get_character_data(self)
+  end
 end

@@ -1,10 +1,10 @@
 class CreateRealms < ActiveRecord::Migration
   def change
     create_table :realms do |t|
+      t.references :region, index: true, foreign_key: true
       t.string :name
-      t.string :slug
-      t.string :region
+
+      t.timestamps null: false
     end
-    add_index :realms, :name
   end
 end
