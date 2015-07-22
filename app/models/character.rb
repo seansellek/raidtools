@@ -3,21 +3,17 @@ class Character < ActiveRecord::Base
   has_one :region, through: :realm
   #Item data is stored as a serialized hash directly from Blizzard Api.
   #Helper methods act as an iterface to parse the data on demand.
-  # serialize :item_data
+  serialize :item_data
 
   #Refreshes item data hash by using the Battle.net API
-  def refresh_item_data
-    item_data = BattleNetApi.get_character_data(self)
+  def refresh_item_data!
+    self.item_data = BattleNetApi.get_character_data(self)
+    self.save ? true : false
   end
   #Accesses character ilvl from stored hash.
   def ilvl
     item_data['items']['averageItemLevelEquipped']
   end
-
-  def class
-
-  end
-
   def head
     Item.new(item_data['items']['head'])
   end

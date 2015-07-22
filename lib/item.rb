@@ -18,7 +18,7 @@ class Item
 
   def gem
     if self.has_gem_slot?
-      item_hash['tooltipParams']['gem0']
+      @item_hash['tooltipParams']['gem0']
     else
       nil
     end

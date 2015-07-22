@@ -5,5 +5,4 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Region.create(name: 'US')
-Region.create(name: 'EU')
+Rake::Task['scheduler:update_realmlist'].invoke

@@ -13,8 +13,7 @@ class CharacterTest < ActiveSupport::TestCase
   end
 
   test "character can update it's item data" do
-    @character.refresh_item_data
-    @character.save
+    @character.refresh_item_data!
     assert_equal 18, Character.find_by(name: 'Nesaru').item_data['items'].length
   end
 
