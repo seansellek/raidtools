@@ -42,6 +42,9 @@ class CharacterTest < ActiveSupport::TestCase
 
   test 'character can return array of all items' do
     assert @character.items.length == 16
+   @character.items.each do |slot, item|
+     assert item.class == Item, "#{item} is not of type Item"
+   end
   end
 
   # test "the truth" do

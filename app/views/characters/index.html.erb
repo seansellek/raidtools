@@ -1,0 +1,20 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Realm</th>
+    <th>iLvl</th>
+  <% @characters[0].items.each_key do |slot| %>
+    <th><%= slot.to_s.capitalize %></th>
+    <% end %>
+</tr>
+<% @characters.each do |c| %>
+  <tr>
+    <td><%= c.name %></td>
+    <td><%= c.realm.name %></td>
+    <td><%= c.ilvl %></td>
+  <% c.items.each do |slot, item| %>
+  <td><%= if item then item.ilvl else 0 end %></td>
+  <% end %>
+  </tr>
+<% end %>
+</table>

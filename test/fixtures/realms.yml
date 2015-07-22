@@ -5,8 +5,3 @@ hyjal:
   region_id: 1
   name: Hyjal
   slug: hyjal
-
-two:
-  id: 2
-  region_id:
-  name: MyString

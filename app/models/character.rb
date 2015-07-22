@@ -1,5 +1,6 @@
 class Character < ActiveRecord::Base
   belongs_to :realm
+  belongs_to :team, class_name: 'RaidTeam'
   has_one :region, through: :realm
   #Item data is stored as a serialized hash directly from Blizzard Api.
   #Helper methods act as an iterface to parse the data on demand.

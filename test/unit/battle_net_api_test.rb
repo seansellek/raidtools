@@ -6,6 +6,7 @@ class BattleNetApiTest < ActiveSupport::TestCase
     data = BattleNetApi.get_character_data(chr)
     assert_equal 18, data["items"].length
   end
+
   # test "the truth" do
   #   assert true
   # end
