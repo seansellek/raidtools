@@ -9,7 +9,7 @@ module ApplicationHelper
       output << (text || item.ilvl.to_s)
       output << '</a>'
     else
-      output = text ? text : 0
+      output = text ? text : '-'
     end
     output
   end
