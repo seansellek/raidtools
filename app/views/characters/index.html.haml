@@ -7,13 +7,4 @@
       %th
         =slot.to_s.capitalize
   - @characters.each do |c|
-    %tr
-      %td
-        = c.name
-      %td
-        = c.realm.name
-      %td
-        = c.ilvl
-      - c.items.each do |slot, item|
-        %td
-          = item ? item.ilvl : 0
+    = render :partial => 'character', :locals => { :c => c }

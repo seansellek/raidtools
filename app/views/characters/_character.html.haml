@@ -1,0 +1,10 @@
+%tr
+  %td
+    = c.name
+  %td
+    = c.realm.name
+  %td
+    = c.ilvl
+  - c.items.each do |slot, item|
+    %td
+      != tooltip_for item
