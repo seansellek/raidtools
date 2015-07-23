@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'characters' => 'characters#index'
+  get 'teams/:id/refresh' => 'teams#refresh'
   resources :teams
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

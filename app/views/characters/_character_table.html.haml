@@ -1,0 +1,19 @@
+%table
+  %tr
+    %th Name
+    %th Realm
+    %th iLvl
+    - characters.first.items.each_key do |slot|
+      %th
+        =slot.to_s.capitalize
+  - characters.each do |c|
+    %tr
+      %td
+        = c.name
+      %td
+        = c.realm.name
+      %td
+        = c.ilvl
+      - c.items.each do |slot, item|
+        %td
+          != tooltip_for item

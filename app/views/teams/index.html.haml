@@ -1,0 +1,21 @@
+%table
+  %tr
+    %th id
+    %th name
+    %th update
+    %th refresh
+    %th destroy
+
+  - @teams.each do |team|
+    %tr
+      %td
+        = team.id
+      %td
+        = link_to team.name, team_path(team)
+      %td
+        = link_to 'Update', edit_team_path(team)
+      %td
+        = link_to 'Refresh', team_path(team) + '/refresh'
+      %td
+        = link_to 'Destroy', team_path(team), method: :delete
+= link_to 'New', new_team_path

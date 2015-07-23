@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 #ruby-gemset=raidtools
 ##
 gem 'haml'
+gem 'cocoon'
+gem 'simple_form'
 gem 'httparty'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'

@@ -1,0 +1,6 @@
+%h1
+  -@team.name
+- unless @characters.empty?
+  = render partial: '/characters/character_table', locals: { characters: @characters }
+- else
+  = render partial: 'form'

@@ -1,10 +1,1 @@
-%table
-  %tr
-    %th Name
-    %th Realm
-    %th iLvl
-    - @characters.first.items.each_key do |slot|
-      %th
-        =slot.to_s.capitalize
-  - @characters.each do |c|
-    = render partial: 'character', locals: { c: c }
+= render partial: 'character_table', locals: { characters: @characters }

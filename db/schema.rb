@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722204837) do
+ActiveRecord::Schema.define(version: 20150723181657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,12 +27,6 @@ ActiveRecord::Schema.define(version: 20150722204837) do
 
   add_index "characters", ["realm_id"], name: "index_characters_on_realm_id", using: :btree
   add_index "characters", ["team_id"], name: "index_characters_on_team_id", using: :btree
-
-  create_table "raid_teams", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "realms", force: :cascade do |t|
     t.integer  "region_id"

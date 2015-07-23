@@ -1,0 +1,4 @@
+.nested-fields
+  = f.input :name
+  = f.input :realm_id, collection: @realms, label_method: :label, value_method: :id
+  = link_to_remove_association "remove", f
