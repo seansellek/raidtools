@@ -3,8 +3,8 @@
   #players
     %h3 Players
     = f.simple_fields_for :characters do |character|
-      = render 'characters/character_fields', :f => character
+      = render 'character_fields', :f => character
     .links
-      = link_to_add_association 'add player', f, :characters, partial: 'characters/character_fields'
+      = link_to_add_association 'add player', f, :characters, partial: 'character_fields'
   = f.button :submit
   = link_to 'Cancel', teams_path
