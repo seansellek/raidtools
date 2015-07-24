@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'characters' => 'characters#index'
+  devise_for :users
+  root 'teams#index'
   get 'teams/:id/refresh' => 'teams#refresh'
   resources :teams
   # The priority is based upon order of creation: first created -> highest priority.

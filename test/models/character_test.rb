@@ -8,11 +8,6 @@ class CharacterTest < ActiveSupport::TestCase
   test "character has realm" do
     assert @character.realm.characters.include? (@character)
   end
-  test "character data is validated" do
-    assert_not @char2.valid?, 'Validation non functional'
-  end
-
-
   test "character has region" do
     assert @character.region == @character.realm.region
   end
