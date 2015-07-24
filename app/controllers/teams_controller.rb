@@ -5,6 +5,7 @@ class TeamsController < ApplicationController
   end
   def new
     @team = Team.new
+    @realms = Realm.all.includes(:region)
   end
   def create
     @team = Team.new(team_params)

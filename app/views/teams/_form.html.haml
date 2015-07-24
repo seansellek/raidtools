@@ -1,9 +1,10 @@
 = simple_form_for @team do |f|
-  = f.input :name, value: @team.name || ''
-  %h3 Players
+  = f.input_field :name, placeholder: 'Name', value: @team.name || '', required: true
   #players
+    %h3 Players
     = f.simple_fields_for :characters do |character|
       = render 'characters/character_fields', :f => character
     .links
       = link_to_add_association 'add player', f, :characters, partial: 'characters/character_fields'
   = f.button :submit
+  = link_to 'Cancel', teams_path
