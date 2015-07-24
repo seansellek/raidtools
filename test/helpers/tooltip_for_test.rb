@@ -4,3 +4,5 @@
 #     @character = characters(:nesaru)
 #     @item = @character.head
 #   end
+  
+# end

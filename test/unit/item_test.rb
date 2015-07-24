@@ -3,6 +3,7 @@ class ItemTest < ActiveSupport::TestCase
   def setup
     @item = characters(:nesaru).head
     @item2 = characters(:nesaru).neck
+    @item3 = Item.new()
   end
 
   test "item can return it's id" do
@@ -19,12 +20,12 @@ class ItemTest < ActiveSupport::TestCase
 
   test "item can return enchant id or false for no enchant" do
     assert_equal 5318, @item2.enchant
-    assert !@item.enchant
+    assert !@item.enchant, "Item without enchant must return falsey"
   end
 
   test "item can report if it has a gem slot" do
-    assert_equal false, @item.has_gem_slot?
-    assert_equal true, @item2.has_gem_slot?
+    assert_not @item.gem
+    assert @item2.gem
   end
 
   test "item can report it's set" do
@@ -35,6 +36,10 @@ class ItemTest < ActiveSupport::TestCase
           115541
         ], @item.set
     assert_equal nil, @item2.set
+  end
+
+  test "item can handle nil input" do
+    assert_equal 0, @item3.ilvl
   end
 
 

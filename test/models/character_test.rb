@@ -3,10 +3,15 @@ require 'test_helper'
 class CharacterTest < ActiveSupport::TestCase
   def setup
     @character = characters(:nesaru)
+    @char2 = characters(:two)
   end
   test "character has realm" do
     assert @character.realm.characters.include? (@character)
   end
+  test "character data is validated" do
+    assert_not @char2.valid?, 'Validation non functional'
+  end
+
 
   test "character has region" do
     assert @character.region == @character.realm.region

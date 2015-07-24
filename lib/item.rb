@@ -3,22 +3,16 @@
 #Add methods here to expose more of an item's data.
 class Item
   attr_reader :id, :ilvl, :tooltipParams, :bonuses, :enchant
-  def initialize (item_hash = nil)
-    if item_hash
-      @id = item_hash['id']
-      @ilvl = item_hash['itemLevel']
-      @bonuses = item_hash['bonusLists']
-      @enchant = item_hash['tooltipParams']['enchant'] || false
+  def initialize (item_hash = {})
+      @id = item_hash['id'] || ''
+      @ilvl = item_hash['itemLevel'] || 0
+      @bonuses = item_hash['bonusLists'] || []
+      @enchant = item_hash['tooltipParams'] && item_hash['tooltipParams']['enchant'] ? item_hash['tooltipParams']['enchant'] : false
       @item_hash = item_hash
-    end
-  end
-
-  def has_gem_slot?
-    !(@bonuses & [564,565]).empty?
   end
 
   def gem
-    if self.has_gem_slot?
+    if @item_hash['tooltipParams']
       @item_hash['tooltipParams']['gem0']
     else
       nil
@@ -26,7 +20,7 @@ class Item
   end
 
   def set
-    if @item_hash['tooltipParams'].has_key?('set')
+    if @item_hash['tooltipParams']
       @item_hash['tooltipParams']['set']
     else
       nil

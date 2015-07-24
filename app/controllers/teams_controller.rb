@@ -25,7 +25,7 @@ class TeamsController < ApplicationController
   def update
     @team = Team.find(params[:id])
     @team.update(team_params)
-    redirect_to teams_path
+    redirect_to team_path(@team.id)
   end
   def show
     @team = Team.find(params[:id])

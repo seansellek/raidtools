@@ -8,9 +8,10 @@ class Character < ActiveRecord::Base
 
   before_save :refresh_item_data
 
+
   #Refreshes item data hash by using the Battle.net API
   def refresh_item_data
-    self.item_data = BattleNetApi.get_character_data(self) 
+    self.item_data = BattleNetApi.get_character_data(self)
     #self.save ? true : false
   end
   def refresh_item_data!
@@ -19,16 +20,20 @@ class Character < ActiveRecord::Base
   end
   #Accesses character ilvl from stored hash.
   def ilvl
-    item_data['items']['averageItemLevelEquipped']
+    item_data['items'] ? item_data['items']['averageItemLevelEquipped'] : 0
   end
 
   [:head,:neck,:shoulder,:back,:chest,
   :wrist,:hands,:waist,:legs,:feet,
   :finger1,:finger2,:trinket1,:trinket2,:mainHand,
   :offHand].each do |sym|
-    define_method sym do 
-     Item.new(item_data['items'][sym.to_s])
-    end
+    define_method sym do
+     if item_data['items'] && item_data['items'][sym.to_s]
+       Item.new(item_data['items'][sym.to_s])
+     else
+       nil
+     end
+   end
   end
   def items
     {
