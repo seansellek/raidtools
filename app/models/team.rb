@@ -1,5 +1,6 @@
 class Team < ActiveRecord::Base
   has_many :characters
+  belongs_to :user
   accepts_nested_attributes_for :characters, :reject_if => :all_blank, :allow_destroy => true
 
   def ilvl

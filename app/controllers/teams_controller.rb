@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
-  before_action :find_realm, only: [:create, :update]
+  before_action :authenticate_user!
   def index
-    @teams = Team.all
+    @teams = Team.where(user: current_user)
   end
   def new
     @team = Team.new
@@ -9,28 +9,43 @@ class TeamsController < ApplicationController
   end
   def create
     @team = Team.new(team_params)
+    @team.user = current_user
     @team.save
     redirect_to teams_path
   end
   def edit
-    @team = Team.find(params[:id])
-    @realms = Realm.all.includes(:region)
+    if @team.user == current_user
+      @team = Team.find(params[:id])
+      @realms = Realm.all.includes(:region)
+    else
+      redirect_to root
+    end
   end
   def destroy
     @team = Team.find(params[:id])
-    @characters = @team.characters
-    @characters.each {|character| character.destroy }
-    @team.destroy
-    redirect_to teams_path
+    if @team.user = current_user
+      @characters = @team.characters
+      @characters.each {|character| character.destroy }
+      @team.destroy
+    end
+      redirect_to teams_path
   end
   def update
     @team = Team.find(params[:id])
-    @team.update(team_params)
-    redirect_to team_path(@team.id)
+    if @team.user == current_user
+      @team.update(team_params)
+      redirect_to team_path(@team.id)
+    else
+      redirect_to root
+    end
   end
   def show
     @team = Team.find(params[:id])
-    @characters = @team.characters
+    if @team.user == current_user
+      @characters = @team.characters
+    else
+      redirect_to root
+    end
   end
   def refresh
     @team = Team.find(params[:id])
@@ -41,8 +56,5 @@ class TeamsController < ApplicationController
   private
   def team_params
     params.require(:team).permit(:name, characters_attributes: [:id, :name, :realm_id, :_destroy])
-  end
-  def find_realm
-    #in params, find each character, and convert realm field (id) to realm object
   end
 end
