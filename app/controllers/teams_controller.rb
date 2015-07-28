@@ -14,8 +14,8 @@ class TeamsController < ApplicationController
     redirect_to teams_path
   end
   def edit
-    if @team.user == current_user
-      @team = Team.find(params[:id])
+    @team = Team.find(params[:id])
+    if @team && @team.user == current_user
       @realms = Realm.all.includes(:region)
     else
       redirect_to root
